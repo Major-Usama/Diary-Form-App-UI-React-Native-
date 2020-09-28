@@ -1,21 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, View ,Platform,StatusBar} from 'react-native'
+import Reg from './Reg'
+import Update from './Update'
+import Login from './Login'
+import Recover from './Recover'
+import Diaries from './Diaries'
+import ChaptersNoPages from './ChapterNoPages'
+import BusinessEthics from './BusinessEthics'
+import EntrepElite from './EntrepElite'
+import CreateDiary from './CreateDiary'
+import Welcome from './Welcome'
+
+
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <Welcome />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+container:
+{
+        paddingTop:Platform.OS==='android' ? StatusBar.currentHeight : 0
+}
+
+})
