@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Image, ImageBackground, StyleSheet, Text, View, TextInput } from 'react-native'
+import { Image, ImageBackground, StyleSheet, Text, View, TextInput,StatusBar,Platform } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import { useFonts } from '@use-expo/font';
@@ -24,8 +24,10 @@ export default function BusinessEthics() {
     }
 
     return (
-        <ImageBackground source={require('./assets/white.jpg')} style={{ width: wp('100%'), height: '100%' }}>
-
+        <ImageBackground source={require('./assets/businessEthicsB.jpg')} style={{ width: wp('100%'), height:hp('100%'),
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+         }}>
+              <View style={{right:wp('1.5%')}}>
             <View style={{marginHorizontal:wp('-3%')}}>
             <View style={{
                 flexDirection: 'row', justifyContent: 'space-around'
@@ -210,14 +212,10 @@ export default function BusinessEthics() {
                 <Image style={{ width: wp('13%'), height: hp('13%'), overflow: 'hidden' }} source={require('./assets/hangerY.png')} />
             </View>
 
-
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', height: hp('0%') }}>
-                <Image style={{ width: wp('6%'), height: hp('6%'), left: wp('7%'), overflow: 'hidden', borderTopLeftRadius: 10, borderTopRightRadius: 10 }} source={require('./assets/plus.png')} />
-                <Image style={{ width: wp('34%'), height: hp('5%'), overflow: 'hidden' }} source={require('./assets/back.png')} />
-                <Image style={{ width: wp('6%'), height: hp('6%'), right: wp('7%'), overflow: 'hidden', borderTopLeftRadius: 10, borderTopRightRadius: 10 }} source={require('./assets/DELETE.png')} />
-
             </View>
 
+
+            
 
         </ImageBackground>
     )
@@ -272,3 +270,13 @@ const styles = StyleSheet.create({
 
 
 })
+
+
+
+{/* <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', height: hp('0%') }}>
+                <Image style={{ width: wp('6%'), height: hp('6%'), left: wp('7%'), overflow: 'hidden', borderTopLeftRadius: 10, borderTopRightRadius: 10 }} source={require('./assets/plus.png')} />
+                <Image style={{ width: wp('34%'), height: hp('5%'), overflow: 'hidden' }} source={require('./assets/back.png')} />
+                <Image style={{ width: wp('6%'), height: hp('6%'), right: wp('7%'), overflow: 'hidden', borderTopLeftRadius: 10, borderTopRightRadius: 10 }} source={require('./assets/DELETE.png')} />
+
+            </View> */}
+

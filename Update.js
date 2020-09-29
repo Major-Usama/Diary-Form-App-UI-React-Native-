@@ -17,14 +17,31 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
+import { useFonts } from '@use-expo/font';
+import { AppLoading } from "expo";
 
 
-
-export default function Update() {
+export default function Update({navigation}) {
   const [val1, setVal1] = useState()
   const [val2, setVal2] = useState()
   const [val3, setVal3] = useState()
   const [val4, setVal4] = useState()
+
+
+
+
+  const [loaded] = useFonts({
+    "Poppins-ExtraBold": require('./assets/fonts/Poppins-ExtraBold.ttf'),
+    "Poppins-Light": require('./assets/fonts/Poppins-Light.ttf'),
+    "Poppins-Bold": require('./assets/fonts/Poppins-Bold.ttf'),
+    "Poppins-SemiBold": require('./assets/fonts/Poppins-SemiBold.ttf'),
+});
+
+if (!loaded) {
+    return <AppLoading />;
+}
+
+
   return (
     <ImageBackground source={require('./assets/up3.jpg')} style={styles.container}>
 
@@ -74,7 +91,7 @@ export default function Update() {
           <SimpleLineIcons name="key" size={16} color="#B0A5E3" />
         </View>
          
-         <TouchableOpacity>
+         <TouchableOpacity onPress={()=>navigation.navigate('Welcome')}>
         <View style={styles.registerButton}>
           <Text style={styles.buttonText}>Update</Text>
 
@@ -147,18 +164,20 @@ const styles = StyleSheet.create({
   },
   registerButton:
   {
-    width: wp('34%'),
-    padding: wp('2%'),
+    width: wp('32%'),
+    padding: wp('.6%'),
     backgroundColor: '#F7C900',
     borderRadius: 5,
-    marginVertical: hp('4%'),
+    marginVertical: hp('5%'),
+    left:wp('1%'),
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    bottom:hp('1.5%')
   },
   buttonText:
   {
-    fontWeight: 'bold',
-    fontSize: wp('6%'),
+    fontFamily:'Poppins-ExtraBold',
+    fontSize: wp('4%'),
     color: '#734FBB'
   }
 

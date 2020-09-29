@@ -4,7 +4,7 @@ import {
   Text, View, Platform,
   StatusBar, ImageBackground,
   TextInput,
-  ScrollView
+  TouchableOpacity
 
 
 
@@ -13,7 +13,8 @@ import {
   from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-
+import { useFonts } from '@use-expo/font';
+import { AppLoading } from "expo";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
@@ -21,11 +22,28 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 
 
 
-export default function Reg() {
+export default function Reg({navigation}) {
   const [val1, setVal1] = useState()
   const [val2, setVal2] = useState()
   const [val3, setVal3] = useState()
   const [val4, setVal4] = useState()
+
+     const [loaded] = useFonts({
+    "Poppins-ExtraBold": require('./assets/fonts/Poppins-ExtraBold.ttf'),
+    "Poppins-Light": require('./assets/fonts/Poppins-Light.ttf'),
+    "Poppins-Bold": require('./assets/fonts/Poppins-Bold.ttf'),
+    "Poppins-SemiBold": require('./assets/fonts/Poppins-SemiBold.ttf'),
+});
+
+if (!loaded) {
+    return <AppLoading />;
+}
+
+
+
+
+
+
   return (
     <ImageBackground source={require('./assets/Reg1.jpg')} style={styles.container}>
 
@@ -74,11 +92,15 @@ export default function Reg() {
           <SimpleLineIcons name="key" size={16} color="#B0A5E3" />
         </View>
 
-        <View style={styles.registerButton}>
+
+         <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
+              <View style={styles.registerButton}>
           <Text style={styles.buttonText}>Register</Text>
+          
 
         </View>
 
+        </TouchableOpacity>
 
 
 
@@ -143,18 +165,22 @@ const styles = StyleSheet.create({
   registerButton:
   {
     width: wp('32%'),
-    padding: wp('2%'),
+    padding: wp('.5%'),
     backgroundColor: '#F7C900',
     borderRadius: 5,
     marginVertical: hp('4%'),
+    bottom:hp('.6%'),
+    right:wp('1%'),
     justifyContent: 'center',
     alignItems: 'center'
   },
   buttonText:
   {
-    fontWeight: 'bold',
-    fontSize: wp('6%'),
-    color: '#734FBB'
+    
+    fontSize: wp('4.5%'),
+    color: '#734FBB',
+    fontFamily:'Poppins-ExtraBold',
+    textAlign:'center'
   }
 
 })

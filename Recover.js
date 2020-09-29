@@ -8,6 +8,9 @@ import {
 
 }from 
 'react-native'
+
+import { useFonts } from '@use-expo/font';
+import { AppLoading } from "expo";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
@@ -19,8 +22,24 @@ import { Fontisto } from '@expo/vector-icons';
 
 
 
-export default function Recover() {
+export default function Recover({navigation}) {
   const [val1, setVal1] = useState()
+
+
+
+  const [loaded] = useFonts({
+    "Poppins-ExtraBold": require('./assets/fonts/Poppins-ExtraBold.ttf'),
+    "Poppins-Light": require('./assets/fonts/Poppins-Light.ttf'),
+    "Poppins-Bold": require('./assets/fonts/Poppins-Bold.ttf'),
+    "Poppins-SemiBold": require('./assets/fonts/Poppins-SemiBold.ttf'),
+});
+
+if (!loaded) {
+    return <AppLoading />;
+}
+
+
+
   return (
     <ImageBackground source={require('./assets/Reg1.jpg')} style={styles.container}>
 
@@ -49,7 +68,7 @@ export default function Recover() {
 
       
          
-         <TouchableOpacity>
+         <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
         <View style={styles.registerButton}>
           <Text style={styles.buttonText}>Recover Account</Text>
 
@@ -96,6 +115,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'flex-end',
     height: hp('65%'),
+    bottom:hp('10%')
     
     
 
@@ -131,8 +151,8 @@ const styles = StyleSheet.create({
   },
   registerButton:
   {
-    width: wp('36%'),
-    padding: wp('2%'),
+    width: wp('34%'),
+    padding: wp('1%'),
     backgroundColor: '#F7C900',
     borderRadius: 5,
     marginVertical: hp('4%'),
@@ -142,8 +162,8 @@ const styles = StyleSheet.create({
   },
   buttonText:
   {
-    fontWeight: 'bold',
-    fontSize: wp('4%'),
+    fontFamily:"Poppins-ExtraBold",
+    fontSize: wp('3.5%'),
     color: '#734FBB',
   }
 

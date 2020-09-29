@@ -11,16 +11,31 @@ import {
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
-
+import { useFonts } from '@use-expo/font';
+import { AppLoading } from "expo";
 import { Fontisto } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 
 
 
-export default function Login() {
+export default function Login({navigation}) {
   const [val1, setVal1] = useState()
   const [val2, setVal2] = useState()
+
+
+
+       const [loaded] = useFonts({
+    "Poppins-ExtraBold": require('./assets/fonts/Poppins-ExtraBold.ttf'),
+    "Poppins-Light": require('./assets/fonts/Poppins-Light.ttf'),
+    "Poppins-Bold": require('./assets/fonts/Poppins-Bold.ttf'),
+    "Poppins-SemiBold": require('./assets/fonts/Poppins-SemiBold.ttf'),
+});
+
+if (!loaded) {
+    return <AppLoading />;
+}
+
 
   return (
     <ImageBackground source={require('./assets/Reg1.jpg')} style={styles.container}>
@@ -58,26 +73,31 @@ export default function Login() {
              <SimpleLineIcons name="key" size={12} color="#B0A5E3" />
 
         </View>
+       
         <View style={{alignSelf:'flex-start'}}>
-        <Text style={{color:'#734FBB',fontSize:11}}>Forgot Password ?</Text>
+        <Text onPress={()=>navigation.navigate('Recover')}   style={{color:'#734FBB',fontSize:10,left:wp('1%')}}>Forgot Password ?</Text>
         </View>
-        
+    
 
 
 
 
       
          
-         <TouchableOpacity>
+         
         <View style={styles.registerButton}>
-          <Text style={styles.buttonText}>Log In</Text>
+          <Text  onPress={()=>navigation.navigate('Welcome')} style={styles.buttonText}>Log In</Text>
 
         </View>
         
-        </TouchableOpacity>
-        <View style={{alignSelf:'center',bottom:hp('3%'),right:wp('2.5%')}}>
-            <Text style={{color:'#734FBB',fontSize:11}}>Create an Account ?</Text>
+        
+
+      
+          <View style={{alignSelf:'center',bottom:hp('3%'),right:wp('1%')}}>
+            <Text onPress={()=>navigation.navigate('Reg')} style={{color:'#734FBB',fontSize:11}}>Create an Account ?</Text>
         </View>
+      
+
 
         
       
@@ -167,19 +187,19 @@ const styles = StyleSheet.create({
   },
   registerButton:
   {
-    width: wp('32%'),
-    padding: wp('1%'),
+    width: wp('28%'),
+    padding: wp('.4%'),
     backgroundColor: '#F7C900',
     borderRadius: 5,
     marginVertical: hp('4%'),
     justifyContent: 'center',
     alignItems: 'center',
-    right:10
+    right:wp('1%')
   },
   buttonText:
   {
-    fontWeight: 'bold',
-    fontSize: wp('6.5%'),
+    fontFamily:'Poppins-ExtraBold',
+    fontSize: wp('4.8%'),
     color: '#734FBB',
   }
 

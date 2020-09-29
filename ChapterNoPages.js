@@ -75,7 +75,7 @@ export default function ChaptersNoPages() {
 
 
 
-            <Text style={{fontFamily:'Poppins-Bold',fontSize:18,marginHorizontal:wp('19.5%'),top:hp('-1.5%')}}>Entrepreneur Elite</Text>
+            <Text style={{fontFamily:'Poppins-Bold',fontSize:19,marginHorizontal:wp('19.5%'),top:hp('-1.5%')}}>Entrepreneur Elite</Text>
             <View style={{flexDirection:'row',marginVertical:wp('-10%')}}>
                
                 <View style={{marginHorizontal:wp('8%'),backgroundColor:'#343434',borderRadius:12,height:hp('38%'),

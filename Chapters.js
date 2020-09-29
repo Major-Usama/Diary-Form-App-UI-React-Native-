@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Image, ImageBackground, StyleSheet, Text, View, TextInput } from 'react-native'
+import { Image, ImageBackground, StyleSheet, Text, View, TextInput,Platform,StatusBar } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
@@ -11,7 +11,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
-export default function Chapters() {
+export default function Chapters({navigation}) {
 
     const [val1, setVal1] = useState()
 
@@ -28,7 +28,7 @@ export default function Chapters() {
 
 
     return (
-        <ImageBackground style={styles.container} source={require('./assets/white.jpg')}>
+        <ImageBackground style={styles.container} source={require('./assets/bottomhome.jpg')}>
 
             <View style={{
                 flexDirection: 'row', justifyContent: 'space-around'
@@ -57,7 +57,7 @@ export default function Chapters() {
                     borderTopLeftRadius: 10, borderBottomLeftRadius: 10, flexDirection: 'row',
                     justifyContent: 'space-around', alignItems: 'center',
                 }}>
-                    <Text style={{ fontSize: wp('2.9%'), fontFamily: 'Poppins-Bold', fontSize: wp('3.0%') }}>Create Chapter</Text>
+                    <Text onPress={()=>navigation.navigate('EntrepElite')} style={{ fontSize: wp('2.9%'), fontFamily: 'Poppins-Bold', fontSize: wp('3.0%') }}>Create Chapter</Text>
                     <Image style={{ width: wp('3.5%'), height: hp('2%') }} source={require('./assets/write.png')} />
 
                 </View>
@@ -120,7 +120,7 @@ export default function Chapters() {
                        
                     <Text numberOfLines={1} style={{fontFamily:'Poppins-SemiBold',fontSize:18,}}>CHAPTERS</Text>
                     <View style={{marginVertical:wp('.9%'),left:wp('3.5%')}}>
-                      <Text style={{fontFamily:'Poppins-Light',marginVertical:hp('1%'),fontSize:10}}>Business Ethics</Text>
+                      <Text onPress={()=>navigation.navigate('EntrepElite')} style={{fontFamily:'Poppins-Light',marginVertical:hp('1%'),fontSize:10}}>Business Ethics</Text>
                       <Text style={{fontFamily:'Poppins-Light',marginVertical:hp('1%'),fontSize:10}}>Overcast Days</Text>
                       <Text style={{fontFamily:'Poppins-Light',marginVertical:hp('1%'),fontSize:10}}>Retractive Interactions</Text>
                       <Text style={{fontFamily:'Poppins-Light',marginVertical:hp('1%'),fontSize:10}}>Time Looper</Text>
@@ -174,9 +174,9 @@ export default function Chapters() {
                 height:hp('26%')}} >
 
                     <View style={{flexDirection:'row',left:wp('4%'),justifyContent:'space-around',}}>
-                             <View style={{height:wp('48%'),justifyContent:'center',marginHorizontal:wp('2.5%')}}>
+                             <View style={{height:wp('48%'),justifyContent:'center',right:wp('6%')}}>
                             
-                             <View >
+                             <View>
                             <Text style={{fontFamily:'Poppins-ExtraBold',color:'#fff',top:wp('1.5%')}}>Business</Text>
                             <Text style={{fontFamily:'Poppins-ExtraBold',color:'#fff'}}>Ethics</Text>
 
@@ -194,7 +194,7 @@ export default function Chapters() {
 
 
                             <View style={{borderRadius:12,height:hp('37%'),
-                justifyContent:'center',alignItems:'center',marginHorizontal:wp('8%'),marginVertical:hp('-4%')}}>
+                justifyContent:'center',alignItems:'center',marginVertical:hp('-4%'),right:wp('7.5%')}}>
                        
                        
                     <Text numberOfLines={1} style={{fontFamily:'Poppins-SemiBold',fontSize:18,color:'#ECBD45',right:wp('2.6%')}}>Pages</Text>
@@ -219,9 +219,9 @@ export default function Chapters() {
 
 
 
-              <View style={{alignItems:'center',justifyContent:"space-around",}}>
-              <Entypo name="plus" size={24} color="black" />
-              <View style={{marginHorizontal:wp('10%'),bottom:wp('5%')}}> 
+              <View style={{alignItems:'center',justifyContent:"space-around",right:wp('2%')}}>
+              <Entypo name="plus" size={24} color="#ECBD45" onPress={()=>navigation.navigate('BusinessEthics')} />
+              <View style={{bottom:wp('5%')}}> 
 
             <View  style={{width:wp('.8%'),height:hp('1.5%'),backgroundColor:'#ECBD45',borderRadius:5}}/>
 
@@ -233,15 +233,7 @@ export default function Chapters() {
 
                     </View>
 
-                    <View style={{backgroundColor:'#3E3E3E',width:wp('24%'),
-                    height:wp('12%'),borderTopLeftRadius:50
-                    ,borderTopRightRadius:50,bottom:wp('.5%'),
-                    alignSelf:'center',justifyContent:'center',alignItems:'center'
-                    }}>
-                        
-                        <FontAwesome name="home" size={28} color="white" />
-
-                    </View>
+                    
 
                 </ImageBackground>
             </View>
@@ -263,7 +255,7 @@ const styles = StyleSheet.create({
 
         width: wp('100%'),
         height: hp('100%'),
-        paddingBottom: 20
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
 
     },
 
